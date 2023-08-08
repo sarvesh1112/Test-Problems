@@ -1,30 +1,29 @@
-import java.io.*;
-import java.util.Scanner;
-public class Problem1 {
+package Test;
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter starting distance :");
-		while(true) {
-			int distance = sc.nextInt();
-			if(distance < 5 || distance > 8) {
-				System.out.println("Sorry Choose between 5Km and 8Km");
-			}
-			else {
-				int i;
-				for(i=distance;i>=1;i--) {
-					System.out.println("Distance to run : " + i);
-					if(i == distance-1) {
-						System.out.println("Good Start Keep it up");
-					}
-					else if(i <= 2) {
-						System.out.println("Almost there");
-					}
+interface AdvancedArithmentic{
+	abstract int sumofdivisors(int n);
+}
+public class Problem1 implements AdvancedArithmentic{
+	
+	public int sumofdivisors(int n) {
+		int sum = 0;
+		for(int i=1;i*i<=n;i++) {
+			if(n%i == 0) {
+				if(i!=(n/i)) {
+					sum+=(i + (n/i));
 				}
-				if(i == 0) break;
+				else {
+					sum+=i;
+				}
 			}
 		}
-		System.out.println("Done for the day");
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Problem1 p1 = new Problem1();
+		System.out.println(p1.sumofdivisors(6));
 
 	}
 
